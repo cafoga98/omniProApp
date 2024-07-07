@@ -29,91 +29,73 @@ class _PhotoPageState extends State<PhotoPage> {
   }
 
   @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _photoBloc.add(
+      const PhotoEvent.fetchPhotos(),
+    );
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: BlocListener<PhotoBloc, PhotoState>(
-        listenWhen: (previous, current) => true,
-        listener: (context, state) => state.maybeWhen(
+      body: BlocBuilder<PhotoBloc, PhotoState>(
+        builder: (context, state) => state.maybeWhen(
           orElse: () {
-            print('=-=-= Listener orElse ${state.runtimeType}');
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
           },
-          initial: () {
-            print('=-=-= Listener inicial');
-          },
-        ),
-        child: BlocBuilder<PhotoBloc, PhotoState>(
-          builder: (context, state) => state.when(
-            initial: () {
-              return Center(
-                child: Column(
-                  children: [
-                    Text('Estado Inicial'),
-                    OutlinedButton(
-                      onPressed: () {
-                        _photoBloc.add(const PhotoEvent.fetchPhotos());
-                      },
-                      child: Text('Refafda'),
-                    ),
-                  ],
+          loaded: (photos, currentPage, totalPages) {
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Flexible(
+                  flex: 2,
+                  child: Image.asset(
+                    'assets/img/img.png',
+                    fit: BoxFit.cover,
+                  ),
                 ),
-              );
-            },
-            loading: () {
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
-            },
-            loaded: (photos, currentPage, totalPages) {
-              return Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Flexible(
-                    flex: 2,
-                    child: Image.asset(
-                      'assets/img/img.png',
-                      fit: BoxFit.cover,
+                Flexible(
+                  flex: 8,
+                  child: ListView.separated(
+                    controller: _scrollController,
+                    itemCount: photos.length,
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 60,
+                      horizontal: 15,
+                    ),
+                    separatorBuilder: (context, index) => const Divider(
+                      color: Colors.transparent,
+                    ),
+                    itemBuilder: (context, index) {
+                      final photo = photos[index];
+                      return CardInfoWidget(photo: photo, index: index);
+                    },
+                  ),
+                ),
+                Flexible(
+                  flex: 1,
+                  child: Text(
+                    '$currentPage / $totalPages',
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20,
                     ),
                   ),
-                  Flexible(
-                    flex: 8,
-                    child: ListView.separated(
-                      controller: _scrollController,
-                      itemCount: photos.length,
-                      padding: const EdgeInsets.symmetric(
-                        vertical: 60,
-                        horizontal: 15,
-                      ),
-                      separatorBuilder: (context, index) => const Divider(
-                        color: Colors.transparent,
-                      ),
-                      itemBuilder: (context, index) {
-                        final photo = photos[index];
-                        return CardInfoWidget(photo: photo, index: index);
-                      },
-                    ),
-                  ),
-                  Flexible(
-                    flex: 1,
-                    child: Text(
-                      '$currentPage / $totalPages',
-                      style: const TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20,
-                      ),
-                    ),
-                  )
-                ],
-              );
-            },
-            error: (exception) {
-              return Center(
-                child: Text(
-                  exception.message,
-                ),
-              );
-            },
-          ),
+                )
+              ],
+            );
+          },
+          error: (exception) {
+            return Center(
+              child: Text(
+                exception.message,
+              ),
+            );
+          },
         ),
       ),
     );
