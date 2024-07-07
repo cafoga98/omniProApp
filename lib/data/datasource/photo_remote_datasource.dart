@@ -1,6 +1,6 @@
 import 'package:http/http.dart' as http;
 import 'package:injectable/injectable.dart';
-import 'package:onmi_pro_app/core/utils/custom_exceptions.dart';
+import 'package:onmi_pro_app/core/error/custom_exceptions.dart';
 import 'dart:convert';
 
 import 'package:onmi_pro_app/data/models/photo_model.dart';

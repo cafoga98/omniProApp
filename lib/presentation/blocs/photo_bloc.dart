@@ -4,8 +4,8 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
-import 'package:onmi_pro_app/core/utils/custom_exceptions.dart';
-import 'package:onmi_pro_app/data/models/photo_model.dart';
+import 'package:onmi_pro_app/core/error/custom_exceptions.dart';
+import 'package:onmi_pro_app/domain/entities/photo_entity.dart';
 import 'package:onmi_pro_app/domain/repositories/photo_repository.dart';
 
 part 'photo_event.dart';

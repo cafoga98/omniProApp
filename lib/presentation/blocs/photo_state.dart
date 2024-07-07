@@ -7,7 +7,7 @@ class PhotoState with _$PhotoState {
   const factory PhotoState.loading() = _Loading;
 
   const factory PhotoState.loaded({
-    required List<PhotoModel> photos,
+    required List<PhotoEntity> photos,
     required int currentPage,
     required int totalPages,
   }) = _Loaded;

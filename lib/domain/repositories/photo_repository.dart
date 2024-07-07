@@ -1,8 +1,8 @@
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
-import 'package:onmi_pro_app/core/utils/custom_exceptions.dart';
+import 'package:onmi_pro_app/core/error/custom_exceptions.dart';
 import 'package:onmi_pro_app/data/datasource/photo_remote_datasource.dart';
-import 'package:onmi_pro_app/data/models/photo_model.dart';
+import 'package:onmi_pro_app/domain/entities/photo_entity.dart';
 
 @lazySingleton
 class PhotoRepository {
@@ -10,7 +10,7 @@ class PhotoRepository {
 
   PhotoRepository({required this.remoteDataSource});
 
-  Future<Either<CustomExceptions, List<PhotoModel>>> fetchPhotos(
+  Future<Either<CustomExceptions, List<PhotoEntity>>> fetchPhotos(
       int start, int limit) async {
     try {
       final response = await remoteDataSource.fetchPhotos(start, limit);

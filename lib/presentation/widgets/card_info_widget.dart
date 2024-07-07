@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:onmi_pro_app/data/models/photo_model.dart';
+import 'package:onmi_pro_app/domain/entities/photo_entity.dart';
 
 class CardInfoWidget extends StatelessWidget {
-  final PhotoModel photo;
+  final PhotoEntity photo;
   final int index;
 
   const CardInfoWidget({
