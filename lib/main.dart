@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:http/http.dart' as http;
 import 'package:onmi_pro_app/core/utils/injection.dart';
-import 'package:onmi_pro_app/data/datasource/photo_remote_datasource.dart';
-import 'package:onmi_pro_app/domain/repositories/photo_repository.dart';
 import 'package:onmi_pro_app/presentation/pages/photo_page.dart';
 import 'presentation/blocs/photo_bloc.dart';
 
