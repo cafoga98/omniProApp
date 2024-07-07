@@ -22,25 +22,10 @@ class PhotoBloc extends Bloc<PhotoEvent, PhotoState> {
   final int _itemsPerPage = 10;
   int _totalPages = 0;
 
-  final ScrollController scrollController = ScrollController();
-
   PhotoBloc({
     required this.photoRepository,
   }) : super(const PhotoState.initial()) {
-    on<_Started>(_initConfig);
     on<_FetchPhotos>(_fetchPhotos);
-  }
-
-  FutureOr<void> _initConfig(_Started event, Emitter emit) {
-    emit(const PhotoState.loading());
-    scrollController.addListener(
-      () {
-        if (scrollController.position.pixels ==
-            scrollController.position.maxScrollExtent) {
-          _fetchPhotos(event, emit);
-        }
-      },
-    );
   }
 
   FutureOr<void> _fetchPhotos(PhotoEvent event, Emitter emit) async {
