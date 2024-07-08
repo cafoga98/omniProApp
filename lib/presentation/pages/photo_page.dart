@@ -23,7 +23,9 @@ class _PhotoPageState extends State<PhotoPage> {
     _scrollController.addListener(() {
       if (_scrollController.position.pixels ==
           _scrollController.position.maxScrollExtent) {
-        _photoBloc.add(const PhotoEvent.fetchPhotos());
+        _photoBloc.add(
+          const FetchPhotosEvent(),
+        );
       }
     });
   }
@@ -32,7 +34,7 @@ class _PhotoPageState extends State<PhotoPage> {
   void didChangeDependencies() {
     super.didChangeDependencies();
     _photoBloc.add(
-      const PhotoEvent.fetchPhotos(),
+      const FetchPhotosEvent(),
     );
   }
 
@@ -90,9 +92,69 @@ class _PhotoPageState extends State<PhotoPage> {
             );
           },
           error: (exception) {
-            return Center(
-              child: Text(
-                exception.message,
+            return Padding(
+              padding: const EdgeInsets.all(15),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Flexible(
+                    flex: 1,
+                    child: Container(
+                      decoration: const BoxDecoration(
+                        image: DecorationImage(
+                          fit: BoxFit.contain,
+                          image: AssetImage('assets/img/warning.png'),
+                        ),
+                      ),
+                    ),
+                  ),
+                  const Flexible(
+                    flex: 1,
+                    child: SizedBox(
+                      height: 50,
+                    ),
+                  ),
+                  Flexible(
+                    flex: 1,
+                    child: Text(
+                      'Houston, we have a problem',
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                  const Flexible(
+                    flex: 1,
+                    child: SizedBox(
+                      height: 10,
+                    ),
+                  ),
+                  Flexible(
+                    flex: 1,
+                    child: Text(
+                      exception.message,
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                  const Flexible(
+                    flex: 1,
+                    child: SizedBox(
+                      height: 50,
+                    ),
+                  ),
+                  Flexible(
+                    flex: 1,
+                    child: OutlinedButton(
+                        onPressed: () {
+                          _photoBloc.add(
+                            const FetchPhotosEvent(),
+                          );
+                        },
+                        child: Text(
+                          'Try again',
+                        )),
+                  ),
+                ],
               ),
             );
           },

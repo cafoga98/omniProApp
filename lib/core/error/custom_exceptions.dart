@@ -17,3 +17,7 @@ class ServerException extends CustomExceptions {
 class NoDataException extends CustomExceptions {
   NoDataException({required super.message});
 }
+
+class UnknownException extends CustomExceptions {
+  UnknownException({required super.message});
+}
