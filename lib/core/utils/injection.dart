@@ -5,8 +5,15 @@ import 'injection.config.dart';
 
 final getIt = GetIt.instance;
 
-@injectableInit
-Future<void> configureDependencies() async => $initGetIt(getIt);
+@InjectableInit(
+  initializerName: r'$initGetIt',
+  preferRelativeImports: true,
+  asExtension: false,
+)
+
+void configureInjection(String environment) async {
+  $initGetIt(getIt, environment: environment);
+}
 
 @module
 abstract class RegisterModule {

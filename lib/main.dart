@@ -6,7 +6,7 @@ import 'presentation/blocs/photo_bloc.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await configureDependencies();
+  configureInjection('prod');
   runApp(const MyApp());
 }
 

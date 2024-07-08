@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
@@ -25,7 +26,7 @@ class PhotoBloc extends Bloc<PhotoEvent, PhotoState> {
   PhotoBloc({
     required this.photoRepository,
   }) : super(const PhotoState.initial()) {
-    on<_FetchPhotos>(_fetchPhotos);
+    on<FetchPhotosEvent>(_fetchPhotos);
   }
 
   FutureOr<void> _fetchPhotos(PhotoEvent event, Emitter emit) async {
