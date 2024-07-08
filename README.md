@@ -40,3 +40,16 @@ lib/
 │   └── widgets/   // Widgets: componentes UI reutilizables
 └── main.dart      // Punto de entrada principal de tu aplicación
 ```
+
+## UI
+- **Warning Page**: Whenever the pad issues an error, the warning screen will look like this, showing the warning message and a button to "retry" consuming the API.:
+
+  <p float="left">
+  <img src="https://github.com/cafoga98/omniProApp/blob/main/assets/img/warning_page.png" width="200" />
+  </p>
+  
+- **Main Page**: When the list consumed through the api https://jsonplaceholder.typicode.com/photos returns results, it will appear as follows:
+
+  <p float="left">
+  <img src="https://github.com/cafoga98/omniProApp/blob/main/assets/img/main_page.png" width="200" />
+  </p>
