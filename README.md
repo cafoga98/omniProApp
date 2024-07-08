@@ -22,20 +22,21 @@ A new Flutter project to omni pro company.
 
 ## Project Structure
 
+```
 lib/
-|- data/
-|   |- models/
-|   |- repositories/
-|   |- datasources/
-|- domain/
-|   |- entities/
-|   |- repositories/
-|- presentation/
-|   |- pages/
-|   |- widgets/
-|   |- blocs/
-|- core/
-|   |- error/
-|   |- utils/
-|- main.dart
-
+├── core/
+│   ├── error/      // Manejo de errores: clases y funciones relacionadas
+│   └── utils/      // Utilidades generales: funciones y clases de utilidad
+├── data/
+│   ├── datasources/  // Acceso a datos: capa de acceso a datos (red, almacenamiento local)
+│   ├── models/       // Modelos de datos: representación de los datos de la aplicación
+│   └── repositories/ // Repositorios: lógica de negocio que interactúa con las fuentes de datos
+├── domain/
+│   ├── entities/     // Entidades del dominio: modelos de datos que representan entidades del negocio
+│   └── repositories/ // Repositorios del dominio: abstracciones de repositorios específicos del dominio
+├── presentation/
+│   ├── blocs/     // BLoC: Componentes de lógica de negocio para la gestión de estado
+│   ├── pages/     // Páginas: pantallas (componentes UI) para diferentes partes de la aplicación
+│   └── widgets/   // Widgets: componentes UI reutilizables
+└── main.dart      // Punto de entrada principal de tu aplicación
+```
