@@ -31,7 +31,7 @@ class PhotoBloc extends Bloc<PhotoEvent, PhotoState> {
     emit(const PhotoState.loading());
     emit(
       await Future.delayed(
-        const Duration(seconds: 2),
+        const Duration(milliseconds: 500),
         () async {
           final response = await photoRepository.fetchPhotos(_page * 10, 10);
           return response.fold(

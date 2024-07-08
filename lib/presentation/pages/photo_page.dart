@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:onmi_pro_app/presentation/blocs/photo_bloc.dart';
 import 'package:onmi_pro_app/presentation/widgets/card_info_widget.dart';
+import 'package:onmi_pro_app/presentation/widgets/warning_widget.dart';
 
 class PhotoPage extends StatefulWidget {
   const PhotoPage({
@@ -92,70 +93,13 @@ class _PhotoPageState extends State<PhotoPage> {
             );
           },
           error: (exception) {
-            return Padding(
-              padding: const EdgeInsets.all(15),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Flexible(
-                    flex: 1,
-                    child: Container(
-                      decoration: const BoxDecoration(
-                        image: DecorationImage(
-                          fit: BoxFit.contain,
-                          image: AssetImage('assets/img/warning.png'),
-                        ),
-                      ),
-                    ),
-                  ),
-                  const Flexible(
-                    flex: 1,
-                    child: SizedBox(
-                      height: 50,
-                    ),
-                  ),
-                  Flexible(
-                    flex: 1,
-                    child: Text(
-                      'Houston, we have a problem',
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
-                  const Flexible(
-                    flex: 1,
-                    child: SizedBox(
-                      height: 10,
-                    ),
-                  ),
-                  Flexible(
-                    flex: 1,
-                    child: Text(
-                      exception.message,
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
-                  const Flexible(
-                    flex: 1,
-                    child: SizedBox(
-                      height: 50,
-                    ),
-                  ),
-                  Flexible(
-                    flex: 1,
-                    child: OutlinedButton(
-                        onPressed: () {
-                          _photoBloc.add(
-                            const FetchPhotosEvent(),
-                          );
-                        },
-                        child: Text(
-                          'Try again',
-                        )),
-                  ),
-                ],
-              ),
+            return WarningWidget(
+              exception: exception,
+              onPressed: () {
+                _photoBloc.add(
+                  const FetchPhotosEvent(),
+                );
+              },
             );
           },
         ),
