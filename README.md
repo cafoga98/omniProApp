@@ -4,13 +4,38 @@ A new Flutter project to omni pro company.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+- Before you start developing with omniPro App, ensure you have the following prerequisites:
 
-A few resources to get you started if this is your first Flutter project:
+## Dependencies
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+* Dart 3.2.3
+* Flutter 3.16.6
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Installation
+
+1. Install Dart and Flutter.
+2. Clone this [repository](https://github.com/cafoga98/omniProApp.git) .
+3. Run `flutter pub get` to get the dependencies of this project.
+4. Run `flutter pub run build_runner build --delete-conflicting-outputs` to generate code derived
+   from annotations and generated sources that depend on `build_runner`, `json_annotation`, `freezed` & `injectable`.
+5. Run `flutter run` to build and run the app.
+
+## Project Structure
+
+lib/
+|- data/
+|   |- models/
+|   |- repositories/
+|   |- datasources/
+|- domain/
+|   |- entities/
+|   |- repositories/
+|- presentation/
+|   |- pages/
+|   |- widgets/
+|   |- blocs/
+|- core/
+|   |- error/
+|   |- utils/
+|- main.dart
+
